@@ -27,3 +27,16 @@ LEFT JOIN
     bookings b ON p.property_id = b.property_id
 GROUP BY 
     p.property_id, p.name;
+
+-- 3. Assign a row number to properties by booking count using ROW_NUMBER()
+SELECT 
+    p.property_id,
+    p.name AS property_name,
+    COUNT(b.booking_id) AS total_bookings,
+    ROW_NUMBER() OVER (ORDER BY COUNT(b.booking_id) DESC) AS row_num
+FROM 
+    properties p
+LEFT JOIN 
+    bookings b ON p.property_id = b.property_id
+GROUP BY 
+    p.property_id, p.name;
