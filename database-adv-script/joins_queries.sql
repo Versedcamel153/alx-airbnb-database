@@ -29,7 +29,9 @@ SELECT
 FROM 
     properties p
 LEFT JOIN 
-    reviews r ON p.property_id = r.property_id;
+    reviews r ON p.property_id = r.property_id
+ORDER BY 
+    p.property_id;
 
 
 -- 3. FULL OUTER JOIN (simulated with LEFT JOIN + RIGHT JOIN + UNION)
