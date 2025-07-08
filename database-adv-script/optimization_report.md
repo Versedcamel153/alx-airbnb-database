@@ -20,7 +20,7 @@ The original query joined:
 - `bookings` table was scanned using `ALL` (full table scan)
 - Joins on `user_id`, `property_id`, and `booking_id` lacked index optimization
 - Fetching too many columns led to unnecessary overhead
-
+                                                        
 ---
 
 ## Optimization Strategy

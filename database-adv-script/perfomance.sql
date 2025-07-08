@@ -1,4 +1,4 @@
--- Initial query with all joins
+-- Initial query with WHERE and AND
 SELECT 
     b.booking_id,
     b.start_date,
@@ -20,7 +20,8 @@ SELECT
 FROM bookings b
 JOIN users u ON b.user_id = u.user_id
 JOIN properties p ON b.property_id = p.property_id
-LEFT JOIN payments pay ON b.booking_id = pay.booking_id;
+LEFT JOIN payments pay ON b.booking_id = pay.booking_id
+WHERE b.status = 'confirmed' AND p.location = 'Accra';
 
 -- Analyze performance
 EXPLAIN
@@ -45,10 +46,10 @@ SELECT
 FROM bookings b
 JOIN users u ON b.user_id = u.user_id
 JOIN properties p ON b.property_id = p.property_id
-LEFT JOIN payments pay ON b.booking_id = pay.booking_id;
+LEFT JOIN payments pay ON b.booking_id = pay.booking_id
+WHERE b.status = 'confirmed' AND p.location = 'Accra';
 
--- Refactored version with index optimization (assuming indexes already exist)
--- Reduced columns to only those used
+-- Refactored version to reduce execution cost
 EXPLAIN
 SELECT 
     b.booking_id,
@@ -60,4 +61,5 @@ SELECT
 FROM bookings b
 JOIN users u ON b.user_id = u.user_id
 JOIN properties p ON b.property_id = p.property_id
-LEFT JOIN payments pay ON b.booking_id = pay.booking_id;
+LEFT JOIN payments pay ON b.booking_id = pay.booking_id
+WHERE b.status = 'confirmed' AND p.location = 'Accra';
